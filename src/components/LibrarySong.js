@@ -7,9 +7,14 @@ const LibrarySong = ({
   audioRef,
   isPlaying,
   setSongs,
+  id,
 }) => {
   const songSelectHandler = () => {
-    // Add Active state
+    const selectedSong = songs.filter((state) => state.id === id);
+    // setCurrentSong(selectedSong[0]);
+    setCurrentSong({ ...selectedSong[0] });
+
+    //Set Active in library
     const newSongs = songs.map((song) => {
       if (song.id === id) {
         return {
@@ -26,7 +31,6 @@ const LibrarySong = ({
 
     setSongs(newSongs);
 
-    // const selectedSong = songs.filter((state) => state.id === id);
     setCurrentSong(song);
 
     // check if the a song is playing
@@ -39,7 +43,6 @@ const LibrarySong = ({
       }
     }
   };
-
   return (
     <div
       onClick={songSelectHandler}
